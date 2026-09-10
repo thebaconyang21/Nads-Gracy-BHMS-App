@@ -1,68 +1,49 @@
-import { SymbolView } from 'expo-symbols';
-import { Link, Tabs } from 'expo-router';
-import { Platform, Pressable } from 'react-native';
+// git add .
+// git commit -m "Update code changes"
+// Pull any remote changes: Bring in any updates from GitHub to avoid conflicts:
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+// Bash
+// git pull origin main --rebase
+// Push to GitHub: Send your finalized local commits up to your repository:
+
+// Bash
+// git push origin main
+import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
-      }}>
+    <Tabs screenOptions={{ tabBarActiveTintColor: '#0F2C59', headerStyle: { backgroundColor: '#F8F9FA' } }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => (
-            <SymbolView
-              name={{
-                ios: 'chevron.left.forwardslash.chevron.right',
-                android: 'code',
-                web: 'code',
-              }}
-              tintColor={color}
-              size={28}
-            />
-          ),
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable style={{ marginRight: 15 }}>
-                {({ pressed }) => (
-                  <SymbolView
-                    name={{ ios: 'info.circle', android: 'info', web: 'info' }}
-                    size={25}
-                    tintColor={Colors[colorScheme].text}
-                    style={{ opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          title: 'Overview',
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => <Ionicons name="grid-outline" size={size} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="rooms"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => (
-            <SymbolView
-              name={{
-                ios: 'chevron.left.forwardslash.chevron.right',
-                android: 'code',
-                web: 'code',
-              }}
-              tintColor={color}
-              size={28}
-            />
-          ),
+          title: 'Rooms (17)',
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => <Ionicons name="bed-outline" size={size} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="billing"
+        options={{
+          title: 'Billing',
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => <Ionicons name="receipt-outline" size={size} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="concerns"
+        options={{
+          title: 'Notices',
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => <Ionicons name="megaphone-outline" size={size} color={color} />,
         }}
       />
     </Tabs>
