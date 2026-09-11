@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { supabase } from '../../services/supabase';
 
 export default function LoginScreen() {
@@ -45,11 +45,11 @@ export default function LoginScreen() {
     // Route user based on their specific database role
     const userRole = profileData.role;
     if (userRole === 'owner') {
-      router.replace('/(tabs)/owner/dashboard');
+      router.replace('/(tabs)/owner/dashboard' as any);
     } else if (userRole === 'caretaker') {
-      router.replace('/(tabs)/caretaker/dashboard');
+      router.replace('/(tabs)/caretaker/dashboard' as any);
     } else if (userRole === 'tenant') {
-      router.replace('/(tabs)/tenant/dashboard');
+      router.replace('/(tabs)/tenant/dashboard' as any);
     } else {
       Alert.alert('Error', 'Unrecognized user role assigned to account.');
     }
